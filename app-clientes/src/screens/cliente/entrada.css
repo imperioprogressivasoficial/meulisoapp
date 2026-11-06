@@ -1,0 +1,181 @@
+/* =========================================================
+   Entrada: boas-vindas, perguntas do primeiro acesso e conta
+   (uma pergunta por tela, no estilo do app Flo)
+   ========================================================= */
+.ob {
+  min-height: 100dvh; max-width: var(--largura-app); margin: 0 auto; background: var(--fundo);
+  display: flex; flex-direction: column; overflow-x: hidden;
+}
+@media (min-width: 1024px) { body.app-cliente .ob { background: var(--fundo); } }
+
+.ob-tela {
+  flex: 1; display: flex; flex-direction: column; gap: var(--e-5);
+  padding: var(--e-4) var(--e-5) calc(env(safe-area-inset-bottom) + var(--e-6));
+}
+
+/* ---------- topo: voltar + pontinhos ---------- */
+.ob-topo {
+  display: grid; grid-template-columns: 44px 1fr 44px; align-items: center;
+  padding: calc(env(safe-area-inset-top) + var(--e-3)) var(--e-3) 0;
+}
+.ob-voltar {
+  width: 44px; height: 44px; border-radius: var(--r-pill); display: grid; place-items: center;
+  color: var(--texto); background: var(--branco); box-shadow: var(--sombra-1);
+}
+.ob-voltar:active { transform: scale(.94); }
+
+/* ---------- boas-vindas ---------- */
+.ob-boas-vindas {
+  display: flex; flex-direction: column; gap: var(--e-5); text-align: center;
+  padding-top: calc(env(safe-area-inset-top) + var(--e-2));
+}
+.ob-moldura {
+  border-radius: var(--r-xl); padding: var(--e-3); background: var(--ml-nude);
+  height: min(46vh, 380px); box-shadow: var(--sombra-2);
+}
+.ob-moldura > * { width: 100%; height: 100%; border-radius: var(--r-lg); object-fit: cover; object-position: 50% 20%; display: block; }
+.ob-texto { color: var(--texto-suave); font-size: var(--t-md); line-height: 1.5; padding: 0 var(--e-3); margin: 0; }
+.ob-links { display: flex; justify-content: center; gap: var(--e-2) var(--e-4); flex-wrap: wrap; }
+.ob-links button { color: var(--texto-suave); font-size: var(--t-sm); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; padding: 4px 0; }
+
+/* ---------- pergunta ---------- */
+.ob-pergunta { display: flex; flex-direction: column; gap: var(--e-2); padding-top: var(--e-3); }
+.ob-pergunta h1 {
+  margin: 0; font-family: var(--fonte-marca); font-optical-sizing: auto; font-weight: 500;
+  font-size: clamp(30px, 8.6vw, 36px); line-height: 1.08; letter-spacing: -.02em; color: var(--texto);
+}
+.ob-pergunta p { margin: 0; color: var(--texto-suave); font-size: var(--t-md); line-height: 1.45; }
+
+/* múltipla escolha em blocos */
+.ob-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: var(--e-3); }
+.ob-tile {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: var(--e-3);
+  min-height: 132px; padding: var(--e-4); border-radius: var(--r-lg); text-align: left;
+  background: var(--branco); border: 2px solid transparent; box-shadow: var(--sombra-1);
+  font-size: var(--t-md); font-weight: 600; line-height: 1.25; color: var(--texto);
+  transition: border-color var(--dur-rapida), background var(--dur-rapida), transform var(--dur-rapida);
+}
+.ob-tile:last-child:nth-child(odd) { grid-column: 1 / -1; min-height: 0; flex-direction: row; align-items: center; justify-content: flex-start; }
+.ob-tile:active { transform: scale(.97); }
+.ob-tile--sel { border-color: var(--ml-dourado); background: var(--ml-dourado-nevoa); }
+.ob-tile__marca, .ob-escolha__marca {
+  width: 22px; height: 22px; border-radius: var(--r-pill); display: grid; place-items: center; flex-shrink: 0;
+  border: 2px solid var(--borda); color: var(--ml-sobre-dourado); background: var(--branco);
+}
+.ob-tile__marca { position: absolute; top: var(--e-3); right: var(--e-3); }
+.ob-tile--sel .ob-tile__marca, .ob-escolha--sel .ob-escolha__marca { background: var(--ml-dourado); border-color: var(--ml-dourado); }
+
+/* escolha única em lista */
+.ob-lista { display: flex; flex-direction: column; gap: var(--e-3); }
+.ob-escolha {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--e-3);
+  min-height: 64px; padding: 0 var(--e-5); border-radius: var(--r-pill); text-align: left;
+  background: var(--branco); border: 2px solid transparent; box-shadow: var(--sombra-1);
+  font-size: var(--t-base); font-weight: 600; color: var(--texto);
+  transition: border-color var(--dur-rapida), background var(--dur-rapida), transform var(--dur-rapida);
+}
+.ob-escolha:active { transform: scale(.98); }
+.ob-escolha--sel { border-color: var(--ml-dourado); background: var(--ml-dourado-nevoa); }
+
+/* tipo de cabelo */
+.ob-cabelos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--e-3); }
+.ob-cabelo {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--e-3);
+  min-height: 140px; border-radius: var(--r-lg); border: 2px solid transparent;
+  font-size: var(--t-base); font-weight: 600; color: var(--texto);
+  transition: border-color var(--dur-rapida), transform var(--dur-rapida);
+}
+.ob-cabelo:nth-child(1) { background: var(--ml-dourado-veu); }
+.ob-cabelo:nth-child(2) { background: var(--ml-nude); }
+.ob-cabelo:nth-child(3) { background: var(--etapa-r-fundo); }
+.ob-cabelo:nth-child(4) { background: var(--areia-100); }
+.ob-cabelo svg { color: var(--acento-icone); }
+.ob-cabelo:active { transform: scale(.97); }
+.ob-cabelo--sel { border-color: var(--ml-dourado); box-shadow: var(--anel-foco); }
+
+.ob-rodape { margin-top: auto; padding-top: var(--e-3); }
+
+/* ---------- seu plano ---------- */
+.ob-plano__topo { display: flex; flex-direction: column; gap: var(--e-3); text-align: center; padding-top: var(--e-2); }
+.ob-plano { display: flex; flex-direction: column; gap: var(--e-3); }
+.ob-cartao { display: flex; align-items: center; gap: var(--e-4); padding: var(--e-4); border-radius: var(--r-lg); }
+.ob-cartao > img, .ob-cartao > svg { flex-shrink: 0; }
+.ob-cartao strong { display: block; font-family: var(--fonte-marca); font-weight: 500; font-size: var(--t-lg); letter-spacing: -.01em; color: var(--texto); }
+.ob-cartao p { margin: 2px 0 0; font-size: var(--t-sm); line-height: 1.45; color: var(--texto-suave); }
+.ob-cartao--rosa { background: var(--ml-dourado-veu); }
+.ob-cartao--azul { background: var(--ml-nude); }
+.ob-cartao--lavanda { background: var(--etapa-r-fundo); }
+.ob-cartao--areia { background: var(--areia-100); }
+
+/* ---------- conta: Google, Apple e WhatsApp ---------- */
+.ob-provedores { display: flex; flex-direction: column; gap: var(--e-3); margin-top: var(--e-2); }
+.ob-provedor {
+  display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 52px;
+  padding: 0 var(--e-5); border-radius: var(--r-pill);
+  font-family: var(--fonte-ui); font-size: 16px; font-weight: 600; letter-spacing: .005em;
+  transition: transform var(--dur-rapida), box-shadow var(--dur-rapida);
+}
+.ob-provedor:active { transform: scale(.98); }
+.ob-provedor:disabled { opacity: .55; cursor: not-allowed; }
+.ob-provedor svg { flex-shrink: 0; }
+/* Google: fundo branco, borda cinza, texto #1F1F1F e o "G" colorido */
+.ob-provedor--google { background: #fff; color: #1f1f1f; border: 1px solid #747775; }
+/* Apple: fundo preto, logo e texto brancos */
+.ob-provedor--apple { background: #000; color: #fff; border: 1px solid #000; }
+.ob-letras { margin: 0; text-align: center; font-size: var(--t-xs); line-height: 1.5; color: var(--texto-fraco); padding: 0 var(--e-3); }
+
+/* formulários (telefone, código, cadastro) */
+.ob-tela form.pilha { gap: var(--e-4); }
+.ob-tela form .ob-pergunta { padding-bottom: var(--e-1); }
+.ob-tile:last-child:nth-child(odd) .ob-tile__marca { top: 50%; transform: translateY(-50%); }
+
+/* ---------- barra de progresso e "Pular" ---------- */
+.ob-barra { height: 4px; border-radius: var(--r-pill); background: var(--ml-nude-medio); overflow: hidden; margin: 0 var(--e-3); }
+.ob-barra > span { display: block; height: 100%; border-radius: inherit; background: var(--ml-dourado); }
+.ob-pular {
+  justify-self: end; min-height: 44px; padding: 0 var(--e-2);
+  color: var(--texto-suave); font-size: var(--t-sm); font-weight: 600;
+}
+.ob-topo { grid-template-columns: 44px 1fr 56px; }
+
+/* formulário do nome */
+.ob-form { display: flex; flex-direction: column; gap: var(--e-5); flex: 1; }
+
+/* escolha com detalhe, desabilitada e múltipla */
+.ob-escolha__texto { display: flex; flex-direction: column; gap: 2px; }
+.ob-escolha__texto small { font-size: var(--t-sm); font-weight: 500; color: var(--texto-suave); }
+.ob-escolha--detalhe { border-radius: var(--r-lg); padding-top: var(--e-3); padding-bottom: var(--e-3); }
+.ob-escolha:disabled { opacity: .5; cursor: not-allowed; }
+.ob-escolha__marca--quadrada { border-radius: 7px; }
+
+/* incômodos: pílulas numeradas na ordem em que foram marcadas */
+.ob-chips { display: flex; flex-wrap: wrap; gap: var(--e-3); }
+.ob-chip {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 var(--e-5);
+  border-radius: var(--r-pill); background: var(--branco); border: 2px solid transparent; box-shadow: var(--sombra-1);
+  font-size: var(--t-base); font-weight: 600; color: var(--texto);
+  transition: border-color var(--dur-rapida), background var(--dur-rapida), transform var(--dur-rapida);
+}
+.ob-chip:active { transform: scale(.97); }
+.ob-chip--sel { border-color: var(--ml-dourado); background: var(--ml-dourado-nevoa); }
+.ob-chip__ordem {
+  width: 22px; height: 22px; border-radius: var(--r-pill); display: grid; place-items: center;
+  background: var(--ml-dourado); color: var(--ml-sobre-dourado); font-size: 12px; font-weight: 700;
+}
+
+/* lembretes */
+.ob-lembrete__icone { display: grid; place-items: center; padding-top: var(--e-4); }
+.ob-lembrete__lista { list-style: none; margin: 0; padding: var(--e-4); display: flex; flex-direction: column; gap: var(--e-3); border-radius: var(--r-lg); background: var(--ml-nude); }
+.ob-lembrete__lista li { display: flex; align-items: center; gap: var(--e-3); font-weight: 600; color: var(--texto); }
+.ob-lembrete__lista svg { color: var(--acento-icone); flex-shrink: 0; }
+.ob-tela--lembretes .ob-pergunta { text-align: center; }
+
+/* ---------- Meu perfil de cabelo (mesmas perguntas, dentro do app) ---------- */
+.ob--embutido { min-height: 0; background: transparent; }
+.ob--embutido .ob-tela { padding-top: var(--e-2); }
+.ob--embutido .ob-pergunta { padding-top: var(--e-1); }
+.perfil-cabelo__passo { display: flex; flex-direction: column; gap: var(--e-2); padding: var(--e-3) var(--e-5) 0; }
+.perfil-cabelo__topo { display: flex; flex-direction: column; gap: var(--e-2); padding-top: var(--e-2); }
+.perfil-cabelo__linha { width: 100%; text-align: left; }
+.perfil-cabelo__linha .ds-item__texto small { color: var(--texto-suave); font-size: var(--t-xs); }
+.perfil-cabelo__linha .ds-item__texto strong.fraco { color: var(--texto-fraco); font-weight: 500; }

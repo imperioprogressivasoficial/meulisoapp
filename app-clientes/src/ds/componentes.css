@@ -1,0 +1,276 @@
+/* =========================================================
+   Meu Liso · Design System v7 "Fio": componentes
+   Cores apenas via tokens (src/ds/tokens.css).
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100dvh; background: var(--fundo); color: var(--texto);
+  font-family: var(--fonte-ui); font-size: var(--t-base); line-height: 1.4; letter-spacing: -.01em;
+  -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+}
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--fonte-ui); font-weight: 600; letter-spacing: -.02em; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--acento-icone); outline-offset: 2px; }
+.num { font-variant-numeric: lining-nums tabular-nums; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ---------- Marca Meu Liso (símbolo oficial: nunca distorcer, nunca escrever dentro) ---------- */
+.ml-simbolo { display: block; flex-shrink: 0; width: auto; max-width: none; object-fit: contain; user-select: none; }
+.ml-marca { display: inline-flex; flex-direction: column; align-items: center; gap: 12px; line-height: 1; text-align: center; }
+.ml-marca__textos { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.ml-marca__nome { font-family: var(--fonte-marca); font-weight: 500; letter-spacing: -.015em; color: var(--ml-marrom); white-space: nowrap; }
+.ml-marca__by { font-family: var(--fonte-ui); font-weight: 600; text-transform: uppercase; letter-spacing: .22em; margin-right: -.22em; color: var(--ml-dourado-icone); white-space: nowrap; }
+.ml-marca--sm { gap: 8px; } .ml-marca--sm .ml-marca__nome { font-size: 17px; } .ml-marca--sm .ml-marca__by { font-size: 7.5px; }
+.ml-marca--md .ml-marca__nome { font-size: 26px; } .ml-marca--md .ml-marca__by { font-size: 9px; }
+.ml-marca--lg { gap: 16px; } .ml-marca--lg .ml-marca__nome { font-size: 38px; } .ml-marca--lg .ml-marca__textos { gap: 9px; } .ml-marca--lg .ml-marca__by { font-size: 10.5px; }
+.ml-marca--horizontal { flex-direction: row; gap: 10px; text-align: left; }
+.ml-marca--horizontal .ml-marca__textos { align-items: flex-start; gap: 5px; }
+.ml-marca--horizontal .ml-marca__by { margin-right: 0; }
+.ml-marca--horizontal.ml-marca--lg { gap: 16px; }
+
+/* Marca antiga (compatibilidade: agora renderiza a marca Meu Liso) */
+.ds-marca { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; line-height: 1; }
+.ds-marca__nome { font-family: var(--fonte-marca); font-weight: 500; letter-spacing: -.015em; color: var(--ml-marrom); }
+.ds-marca__sub { font-family: var(--fonte-ui); font-weight: 600; letter-spacing: .22em; margin-right: -.22em; color: var(--ml-dourado-icone); text-transform: uppercase; }
+.ds-marca--sm .ds-marca__nome { font-size: 17px; } .ds-marca--sm .ds-marca__sub { font-size: 7.5px; }
+.ds-marca--md .ds-marca__nome { font-size: 26px; } .ds-marca--md .ds-marca__sub { font-size: 9px; }
+.ds-marca--lg .ds-marca__nome { font-size: 38px; } .ds-marca--lg .ds-marca__sub { font-size: 10.5px; }
+.ds-script { font-family: var(--fonte-marca); font-weight: 400; font-size: var(--t-xl); letter-spacing: -.02em; line-height: 1.15; color: var(--texto); }
+
+/* ---------- Título com marca-texto (assinatura do sistema) ----------
+   Marcador fino em dourado claro sob a palavra, em vez de blocos coloridos. */
+.ds-destaque { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+.ds-destaque--esq { align-items: flex-start; text-align: left; }
+.ds-destaque__linha { font-size: var(--t-lg); font-weight: 500; color: var(--texto-suave); letter-spacing: -.01em; }
+.ds-destaque__palavra { font-family: var(--fonte-marca); font-weight: 600; font-size: var(--t-3xl); line-height: 1.1; letter-spacing: -.035em; color: var(--texto); background: none; padding: 0; border-radius: 0; }
+.ds-destaque__marcador { padding: 0 .08em; background: linear-gradient(180deg, transparent 66%, var(--ml-dourado-claro) 66%, var(--ml-dourado-claro) 92%, transparent 92%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* ---------- Botões ---------- */
+.ds-botao { display: inline-flex; align-items: center; justify-content: center; gap: var(--e-2); border-radius: var(--r-pill); font-weight: 600; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; transition: transform var(--dur-rapida) var(--curva), filter var(--dur-rapida), box-shadow var(--dur-media); }
+.ds-botao--md { min-height: 52px; padding: 8px var(--e-6); font-size: var(--t-base); }
+.ds-botao--bloco { white-space: normal; text-align: center; line-height: 1.25; text-wrap: balance; }
+.ds-botao--sm { min-height: 40px; padding: 0 var(--e-5); font-size: var(--t-md); }
+.ds-botao--bloco { width: 100%; }
+.ds-botao:active:not(:disabled) { transform: scale(.97); }
+.ds-botao:disabled { opacity: .5; cursor: not-allowed; }
+.ds-botao:hover:not(:disabled) { filter: brightness(1.03); }
+/* principal: champagne com texto escuro (6,4:1) */
+.ds-botao--ouro { background: var(--ml-dourado); color: var(--ml-sobre-dourado); box-shadow: var(--sombra-ouro); }
+.ds-botao--ouro:disabled { background: var(--ml-dourado-claro); color: var(--ml-dourado-profundo); box-shadow: none; opacity: 1; }
+.ds-botao--escuro { background: var(--ml-tinta); color: var(--ml-branco); }
+.ds-botao--contorno { background: var(--branco); border: 0; color: var(--texto); box-shadow: inset 0 0 0 1.5px var(--ml-dourado-claro); }
+.ds-botao--sucesso { background: var(--ml-sucesso-forte); color: var(--branco); }
+.ds-botao--texto { color: var(--acento-texto); min-height: 36px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ml-dourado-claro); }
+
+/* ---------- Cartões ---------- */
+.ds-cartao { display: flex; flex-direction: column; gap: var(--e-2); padding: var(--e-5); border-radius: var(--r-lg); text-align: left; width: 100%; color: var(--texto); }
+.ds-cartao--claro { background: var(--branco); border: 1px solid var(--borda); box-shadow: var(--sombra-1); }
+.ds-cartao--creme { background: var(--ml-nude); border: 0; }
+.ds-cartao--ouro { background: var(--ml-dourado-veu); border: 1px solid var(--ml-dourado-claro); box-shadow: none; }
+.ds-cartao--escuro { background: var(--grad-escuro); color: var(--texto); border: 0; box-shadow: none; border-radius: var(--r-xl); }
+.ds-cartao--escuro .suave, .ds-cartao--escuro small { color: var(--texto-suave); }
+.ds-cartao--clicavel { cursor: pointer; transition: transform .12s; }
+.ds-cartao--clicavel:active { transform: scale(.99); }
+
+/* Moldura de tela (quadro nude) */
+.ds-moldura { border-radius: var(--r-xl); padding: var(--e-3); background: var(--ml-nude); }
+.ds-moldura > .ds-cartao { box-shadow: none; }
+
+/* ---------- Cabeçalho ---------- */
+.ds-cabecalho { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; min-height: 52px; padding: calc(env(safe-area-inset-top) + 6px) var(--e-3) 6px; position: sticky; top: 0; z-index: 5; }
+.ds-cabecalho--claro, .ds-cabecalho--escuro { background: var(--veu-claro); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: var(--texto); border-bottom: 0; }
+.ds-cabecalho__titulo { text-align: center; font-size: var(--t-base); font-weight: 600; letter-spacing: -.01em; }
+.ds-cabecalho__lado--dir { display: flex; justify-content: flex-end; }
+.ds-icone-botao { width: 40px; height: 40px; display: grid; place-items: center; border-radius: var(--r-pill); color: var(--texto); background: var(--branco); box-shadow: inset 0 0 0 1px var(--borda), var(--sombra-1); }
+
+/* ---------- Título de seção / link ---------- */
+.ds-titulo-secao { display: flex; align-items: center; justify-content: space-between; }
+.ds-titulo-secao h2 { font-family: var(--fonte-ui); font-size: var(--t-lg); font-weight: 600; }
+.ds-link { display: inline-flex; align-items: center; gap: 2px; font-size: var(--t-md); color: var(--acento-texto); font-weight: 600; text-decoration: none; }
+.rotulo { color: var(--texto-suave); font-size: var(--t-sm); font-weight: 600; text-transform: none; letter-spacing: 0; }
+.ds-cartao--escuro .rotulo { color: var(--acento-texto); }
+
+/* ---------- Etiquetas ---------- */
+.ds-etiqueta { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: var(--r-pill); font-size: var(--t-xs); font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+.ds-etiqueta--sucesso { background: var(--sucesso-fundo); color: var(--sucesso); }
+.ds-etiqueta--aviso { background: var(--aviso-fundo); color: var(--aviso); }
+.ds-etiqueta--erro { background: var(--erro-fundo); color: var(--erro); }
+.ds-etiqueta--ouro { background: var(--ml-dourado-claro); color: var(--etapa-n-tinta); }
+.ds-etiqueta--neutro { background: var(--ml-nude); color: var(--texto-suave); }
+.ds-etiqueta--escuro { background: var(--ml-tinta); color: var(--ml-dourado-claro); }
+
+/* ---------- Progresso ---------- */
+.ds-progresso { height: 8px; border-radius: var(--r-pill); background: var(--ml-nude-medio); overflow: hidden; }
+.ds-progresso--fina { height: 5px; }
+.ds-progresso > div { height: 100%; border-radius: inherit; transition: width .6s ease; }
+.ds-progresso--ouro > div { background: var(--ml-dourado); }
+.ds-progresso--sucesso > div { background: var(--ml-sucesso-forte); }
+.ds-progresso--aviso > div { background: var(--aviso); }
+.ds-progresso--erro > div { background: var(--erro); }
+.ds-cartao--escuro .ds-progresso { background: var(--veu-claro-leve); }
+
+/* ---------- Campos ---------- */
+.ds-campo { display: flex; flex-direction: column; gap: 6px; }
+.ds-campo__rotulo { font-size: var(--t-sm); font-weight: 600; color: var(--texto-suave); }
+.ds-campo__caixa { position: relative; display: flex; align-items: center; }
+.ds-campo input, .ds-campo select, .ds-campo textarea { width: 100%; min-height: 52px; padding: 0 var(--e-4); border-radius: var(--r-md); border: 0; background: var(--branco); color: var(--texto); box-shadow: inset 0 0 0 1.5px var(--borda); font-size: var(--t-base); outline: none; appearance: none; transition: box-shadow .2s; }
+.ds-campo textarea { min-height: 96px; padding: var(--e-3) var(--e-4); font: inherit; font-size: var(--t-base); resize: vertical; }
+.ds-campo input::placeholder, .ds-campo textarea::placeholder { color: var(--texto-fraco); }
+.ds-campo input:focus, .ds-campo select:focus, .ds-campo textarea:focus { border: 0; box-shadow: inset 0 0 0 1.5px var(--ml-dourado), var(--anel-foco); }
+.ds-campo__icone { position: absolute; left: 14px; color: var(--texto-fraco); pointer-events: none; }
+.ds-campo__icone ~ input, .ds-campo__icone ~ select { padding-left: 44px; }
+.ds-campo__seta { position: absolute; right: 14px; color: var(--texto-fraco); pointer-events: none; }
+
+/* ---------- Ícone em moldura ---------- */
+.ds-icone-moldura { display: inline-grid; place-items: center; flex-shrink: 0; border-radius: 50%; }
+.ds-icone-moldura--creme { background: var(--ml-nude); color: var(--acento-texto); }
+.ds-icone-moldura--ouro { background: var(--ml-dourado); color: var(--ml-sobre-dourado); }
+.ds-icone-moldura--escuro { background: var(--branco); color: var(--acento-texto); box-shadow: inset 0 0 0 1px var(--borda); }
+
+/* ---------- Item de lista ---------- */
+.ds-item { display: flex; align-items: center; gap: var(--e-3); min-height: 56px; padding: 12px 0; width: 100%; text-align: left; }
+.ds-item + .ds-item { border-top: 1px solid var(--borda); box-shadow: none; }
+.ds-item__texto { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.ds-item__texto strong { font-size: var(--t-md); font-weight: 600; }
+.ds-item__texto small { font-size: var(--t-sm); color: var(--texto-suave); }
+.ds-item__seta { color: var(--texto-fraco); }
+
+/* ---------- Atalho ---------- */
+.ds-atalho { display: flex; flex-direction: column; align-items: center; gap: var(--e-2); padding: var(--e-3) var(--e-2); border-radius: var(--r-lg); background: var(--branco); border: 1px solid var(--borda); box-shadow: var(--sombra-1); font-size: var(--t-sm); font-weight: 600; color: var(--texto); text-decoration: none; }
+.ds-atalho:active { transform: scale(.97); }
+
+/* ---------- Opção ---------- */
+.ds-opcao { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: var(--e-3) var(--e-2); min-height: 76px; border-radius: var(--r-lg); background: var(--branco); border: 0; box-shadow: inset 0 0 0 1.5px var(--borda); color: var(--acento-icone); font-size: var(--t-sm); font-weight: 600; text-align: center; }
+.ds-opcao span { color: var(--texto); line-height: 1.2; }
+.ds-opcao--sel { box-shadow: inset 0 0 0 2px var(--ml-dourado); background: var(--ml-dourado-nevoa); }
+.ds-opcao--sel::after { content: '✓'; position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; background: var(--ml-dourado); color: var(--ml-sobre-dourado); font-size: 12px; font-weight: 700; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--fundo); }
+.ds-opcao:disabled { opacity: .45; cursor: not-allowed; }
+
+/* ---------- Passos ---------- */
+.ds-passos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.ds-passos li { display: flex; align-items: center; gap: var(--e-3); color: var(--texto-fraco); font-weight: 500; position: relative; }
+.ds-passos li:not(:last-child)::after { content: ''; position: absolute; left: 10px; top: 22px; height: 14px; width: 2px; background: var(--ml-dourado-claro); }
+.ds-passos li.feito::after { background: var(--ml-dourado); }
+.ds-passos__marca { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--ml-nude-medio); display: grid; place-items: center; color: var(--ml-sobre-dourado); flex-shrink: 0; }
+.ds-passos li.feito { color: var(--texto); }
+.ds-passos li.feito .ds-passos__marca { background: var(--ml-dourado); border-color: var(--ml-dourado); }
+.ds-passos li.atual { color: var(--texto); font-weight: 700; }
+.ds-passos li.atual .ds-passos__marca { border: 2px solid var(--ml-dourado); box-shadow: 0 0 0 4px var(--ml-dourado-veu); }
+
+/* ---------- Avatar ---------- */
+.ds-avatar { display: inline-grid; place-items: center; border-radius: 50%; background: var(--ml-dourado-claro); color: var(--etapa-n-tinta); font-family: var(--fonte-marca); font-weight: 600; letter-spacing: -.02em; flex-shrink: 0; box-shadow: 0 0 0 4px var(--branco), 0 0 0 5px var(--borda); }
+
+/* ---------- Folha (modal inferior) ---------- */
+.ds-folha-fundo { position: fixed; inset: 0; background: var(--veu-escuro); display: flex; align-items: flex-end; justify-content: center; z-index: 30; animation: ds-aparece .2s; }
+.ds-folha { width: 100%; max-width: var(--largura-app); background: var(--branco); border-radius: var(--r-xl) var(--r-xl) 0 0; padding: var(--e-3) var(--e-5) calc(var(--e-6) + env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: center; gap: var(--e-3); text-align: center; touch-action: none; box-shadow: 0 -8px 30px rgba(58, 49, 40, .08); animation: ds-sobe .25s ease; }
+.ds-folha__alca { width: 40px; height: 5px; border-radius: 4px; background: var(--ml-nude-medio); margin-bottom: var(--e-2); }
+@keyframes ds-aparece { from { opacity: 0 } }
+@keyframes ds-sobe { from { transform: translateY(40px) } }
+
+/* ---------- Barra de abas (mínima; ativa em champagne) ---------- */
+.ds-abas { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: var(--largura-app); display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--fundo); border-top: 1px solid var(--borda); box-shadow: 0 -6px 20px rgba(58, 49, 40, .04); padding: 8px 4px calc(10px + env(safe-area-inset-bottom)); z-index: 10; }
+.ds-abas button { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 2px; font-size: 11px; font-weight: 600; letter-spacing: 0; color: var(--texto-fraco); }
+.ds-abas button.ativa { color: var(--acento-texto); font-weight: 700; }
+.ds-abas button.ativa svg { color: var(--ml-dourado-icone); }
+.ds-abas button.ativa::before { display: none; }
+.ds-abas__indicador { position: absolute; top: -8px; left: 50%; margin-left: -12px; width: 24px; height: 2px; border-radius: 0 0 2px 2px; background: var(--ml-dourado); }
+
+/* ---------- Segmento ---------- */
+.ds-segmento { display: flex; gap: 0; padding: 4px; border-radius: var(--r-pill); background: var(--ml-nude); }
+.ds-segmento button { position: relative; isolation: isolate; flex: 1; min-height: 36px; border-radius: var(--r-pill); font-size: var(--t-sm); font-weight: 600; color: var(--texto-suave); background: transparent !important; box-shadow: none !important; }
+.ds-segmento button.ativo { color: var(--texto); }
+.ds-segmento__pilula { position: absolute; inset: 0; border-radius: inherit; background: var(--branco); box-shadow: var(--sombra-1); z-index: -1; }
+.ds-segmento__rotulo { position: relative; }
+.ds-segmento--escuro { background: var(--veu-claro-leve); }
+.ds-segmento--escuro button { color: var(--texto-suave); }
+.ds-segmento--escuro button.ativo { color: var(--texto); }
+
+/* ---------- Estrelas ---------- */
+.ds-estrelas { display: flex; gap: 6px; justify-content: center; }
+.ds-estrelas button:disabled { cursor: default; }
+
+/* ---------- Vazio ---------- */
+.ds-vazio { display: flex; flex-direction: column; align-items: center; gap: var(--e-2); padding: var(--e-6) var(--e-4); text-align: center; color: var(--texto-suave); }
+.ds-vazio svg { color: var(--acento-icone); }
+.ds-vazio strong { color: var(--texto); }
+
+/* ---------- QR ---------- */
+.ds-qr { border-radius: var(--r-md); border: 1px solid var(--borda); background: var(--branco); padding: 6px; }
+
+/* ---------- Fotos ---------- */
+.ds-foto { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--r-md); background: var(--ml-nude); display: block; }
+.ds-foto--vazia { display: grid; place-items: center; font-size: var(--t-xs); color: var(--texto-fraco); }
+.ds-entrada-foto { display: flex; align-items: center; justify-content: center; gap: var(--e-2); font-weight: 600; color: var(--acento-texto); }
+.ds-entrada-foto--grande { flex-direction: column; min-height: 150px; width: 100%; border: 1.5px dashed var(--ml-dourado); border-radius: var(--r-lg); background: var(--ml-dourado-nevoa); }
+.ds-entrada-foto--botao { min-height: 40px; padding: 0 var(--e-4); border: 1.5px solid var(--ml-dourado-claro); border-radius: var(--r-pill); font-size: var(--t-sm); background: var(--branco); }
+.ds-erro { color: var(--erro); font-size: var(--t-sm); }
+
+/* ---------- Anel ---------- */
+.ds-anel { position: relative; display: inline-grid; place-items: center; }
+.ds-anel__centro { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+
+/* ---------- Toast ---------- */
+.ds-toast { position: fixed; left: 50%; bottom: calc(var(--altura-abas) + env(safe-area-inset-bottom) + 16px); max-width: calc(min(100vw, var(--largura-app)) - 32px); background: var(--ml-tinta); color: var(--ml-branco); padding: 12px 20px; border-radius: var(--r-pill); box-shadow: var(--sombra-2); z-index: 50; font-size: var(--t-md); font-weight: 600; text-align: center; transform: none; animation: none; }
+
+/* ---------- Sino com contador ---------- */
+.ds-sino { position: relative; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; color: var(--texto); background: var(--branco); box-shadow: inset 0 0 0 1px var(--borda), var(--sombra-1); }
+.ds-sino span { position: absolute; top: 3px; right: 3px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--ml-dourado); color: var(--ml-sobre-dourado); font-size: 10px; font-weight: 700; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--branco); }
+
+/* ---------- Faixa de rolagem horizontal ---------- */
+.ds-faixa { display: flex; gap: var(--e-2); overflow-x: auto; scrollbar-width: none; margin: 0 calc(-1 * var(--e-4)); padding: 2px var(--e-4) 6px; }
+.ds-faixa::-webkit-scrollbar { display: none; }
+.ds-faixa > * { flex-shrink: 0; }
+
+/* ---------- Fotografia ---------- */
+.ds-imagem { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--ml-nude); }
+.ds-foto-falta { display: block; width: 100%; height: 100%; background: linear-gradient(100deg, var(--ml-nude) 30%, var(--ml-dourado-nevoa) 50%, var(--ml-nude) 70%); background-size: 200% 100%; animation: ds-brilho 1.6s ease infinite; }
+.ds-hero > .ds-foto-falta, .club-topo--foto > .ds-foto-falta, .lateral-marca > .ds-foto-falta { position: absolute; inset: 0; z-index: -2; }
+.conteudo__capa > .ds-foto-falta { position: absolute; inset: 0; width: auto; height: auto; border-radius: 0; backdrop-filter: none; }
+.ds-hero { position: relative; border-radius: var(--r-xl); overflow: hidden; min-height: 200px; display: flex; align-items: flex-end; color: var(--texto-inverso); isolation: isolate; text-align: left; width: 100%; }
+.ds-hero > img { position: absolute; inset: 0; z-index: -2; }
+.ds-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(46, 38, 30, 0) 40%, var(--veu-foto) 100%); }
+.ds-hero:has(.ds-foto-falta) { color: var(--texto); }
+.ds-hero:has(.ds-foto-falta)::before { background: linear-gradient(160deg, var(--ml-dourado-veu), var(--ml-nude)); }
+.ds-hero__conteudo { padding: var(--e-6); display: flex; flex-direction: column; gap: 4px; }
+.ds-hero__conteudo strong { font-family: var(--fonte-marca); font-weight: 600; font-size: var(--t-2xl); letter-spacing: -.03em; line-height: 1.1; }
+.ds-hero__conteudo span { font-size: var(--t-sm); opacity: .9; }
+.ds-hero--alto { min-height: 240px; }
+
+/* ---------- Carregamento ---------- */
+.ds-carregando { display: inline-block; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--ml-nude-medio); border-top-color: var(--ml-dourado); animation: ds-gira .8s linear infinite; }
+@keyframes ds-gira { to { transform: rotate(360deg) } }
+.ds-esqueleto { background: linear-gradient(90deg, var(--ml-nude), var(--ml-dourado-nevoa), var(--ml-nude)); background-size: 200% 100%; animation: ds-brilho 1.4s ease infinite; border-radius: var(--r-md); }
+@keyframes ds-brilho { to { background-position: -200% 0 } }
+
+/* ---------- Alerta ---------- */
+.ds-alerta { display: flex; gap: var(--e-3); padding: var(--e-3) var(--e-4); border-radius: var(--r-md); font-size: var(--t-sm); align-items: flex-start; }
+.ds-alerta--info { background: var(--ml-nude); color: var(--texto); }
+.ds-alerta--sucesso { background: var(--sucesso-fundo); color: var(--sucesso); }
+.ds-alerta--aviso { background: var(--aviso-fundo); color: var(--aviso); }
+.ds-alerta--erro { background: var(--erro-fundo); color: var(--erro); }
+
+/* ---------- Interruptor ---------- */
+.interruptor input { background: var(--ml-nude-medio); box-shadow: inset 0 0 0 1px rgba(58, 49, 40, .08); }
+.interruptor input:checked { background: var(--ml-dourado); }
+
+/* ---------- Desktop: o app fica numa coluna, com a marca ao lado ---------- */
+@media (min-width: 1024px) {
+  body.app-cliente { background: var(--ml-nude); }
+  body.app-cliente #root { display: grid; grid-template-columns: 1fr var(--largura-app); min-height: 100dvh; }
+  body.app-cliente .lateral-marca { display: flex; }
+  body.app-cliente .app, body.app-cliente .splash, body.app-cliente .cadastro { background: var(--fundo); margin: 0; }
+  body.app-cliente .ds-abas { left: auto; right: 0; transform: none; }
+}
+.lateral-marca { display: none; position: sticky; top: 0; height: 100dvh; overflow: hidden; color: var(--texto-inverso); isolation: isolate; flex-direction: column; justify-content: flex-end; padding: 56px; gap: 16px; }
+.lateral-marca > img { position: absolute; inset: 0; z-index: -2; }
+.lateral-marca::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(46, 38, 30, .12), var(--veu-foto)); }
+.lateral-marca p { max-width: 36ch; font-size: var(--t-lg); line-height: 1.5; color: var(--ml-branco); }
+.lateral-marca .ds-script { color: var(--ml-branco); font-size: var(--t-2xl); }
+
+/* aniversário: dia + mês */
+.ds-aniversario { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.ds-aniversario__linha { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--e-2); }

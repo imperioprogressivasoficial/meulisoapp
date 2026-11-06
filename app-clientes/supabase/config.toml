@@ -1,0 +1,16 @@
+# Configuração do Supabase CLI para o projeto Império Progressivas
+project_id = "imperio-progressivas"
+
+[auth]
+site_url = "https://app.imperioprogressivas.com.br"
+enable_signup = true
+
+[auth.sms]
+enable_signup = true
+enable_confirmations = true
+
+[functions.webhook-pagamento]
+verify_jwt = false
+
+[functions.enviar-codigo-whatsapp]
+verify_jwt = false

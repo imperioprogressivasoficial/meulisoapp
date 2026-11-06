@@ -1,0 +1,41 @@
+/* =========================================================
+   Diário do cabelo (veio da antiga tela Minha Progressiva)
+   ========================================================= */
+.dia-topo {
+  padding: var(--e-2) var(--e-5) var(--e-6);
+  background: linear-gradient(180deg, var(--ml-dourado-veu) 0%, var(--fundo) 100%);
+  display: flex; flex-direction: column; align-items: center; gap: var(--e-3);
+}
+.dia-topo p { max-width: 320px; margin: 0; }
+.dia-topo--azul { background: linear-gradient(180deg, var(--ml-nude) 0%, var(--fundo) 100%); }
+.dia-topo--areia { background: linear-gradient(180deg, var(--areia-100) 0%, var(--fundo) 100%); }
+.dia-topo--lavanda { background: linear-gradient(180deg, var(--etapa-r-fundo) 0%, var(--fundo) 100%); }
+.dia-topo--pessego { background: linear-gradient(180deg, var(--ml-dourado-veu) 0%, var(--fundo) 100%); }
+
+.dia-tela { padding-top: var(--e-2); }
+.dia-rotulo { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-sm); font-weight: 600; color: var(--texto-suave); }
+.dia-cor { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+/* ---------- diário ---------- */
+.ds-cartao.dia-diario { gap: var(--e-3); }
+.dia-diario__metrica { display: flex; flex-direction: column; gap: 6px; }
+.dia-diario__metrica .dia-rotulo { color: var(--texto); font-size: var(--t-md); }
+.dia-diario__metrica .ds-segmento button { font-variant-numeric: tabular-nums; }
+.ds-cartao.dia-insight { background: linear-gradient(160deg, var(--ml-nude), var(--branco) 70%); border: 0; }
+.dia-insight p { margin: 0; }
+.dia-insight .ds-botao { align-self: flex-start; padding-left: 0; }
+
+.dia-grafico { display: flex; flex-direction: column; gap: var(--e-2); }
+.dia-grafico__legenda { display: flex; flex-wrap: wrap; gap: var(--e-3); font-size: var(--t-sm); color: var(--texto-suave); }
+.dia-grafico__legenda span { display: inline-flex; align-items: center; gap: 6px; }
+.dia-grafico__legenda small { color: var(--texto-fraco); }
+.dia-grafico__detalhe { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--e-3); min-height: 24px; font-size: var(--t-sm); color: var(--texto-suave); }
+.dia-grafico__detalhe strong { color: var(--texto); text-transform: capitalize; }
+.dia-grafico__detalhe b { color: var(--texto); }
+.dia-grafico__svg { width: 100%; height: auto; display: block; touch-action: pan-y; }
+.dia-grafico__grade { stroke: var(--borda); stroke-width: 1; }
+.dia-grafico__eixo { font-size: 10px; fill: var(--texto-fraco); font-family: var(--fonte-ui); }
+.dia-grafico__mira { stroke: var(--texto-fraco); stroke-width: 1; stroke-dasharray: 3 3; }
+.dia-grafico__tabela summary { cursor: pointer; font-size: var(--t-sm); font-weight: 600; color: var(--acento-texto); }
+.dia-grafico__tabela table { width: 100%; border-collapse: collapse; margin-top: var(--e-2); font-size: var(--t-sm); }
+.dia-grafico__tabela th, .dia-grafico__tabela td { padding: 6px; text-align: center; border-top: 1px solid var(--borda); }
+.dia-grafico__tabela thead th { border-top: 0; color: var(--texto-suave); font-weight: 600; }

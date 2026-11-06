@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F28DA8"/><stop offset="1" stop-color="#D9577B"/></linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#8E2245" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1024" height="1024" rx="230" fill="url(#f)"/>
+  <!-- três fios lisos que descem paralelos e terminam com um leve movimento -->
+  <g filter="url(#s)" fill="none" stroke="#FFFFFF" stroke-linecap="round">
+    <path d="M380 190 C380 420 380 620 380 720 C380 800 350 845 300 870" stroke-width="78"/>
+    <path d="M512 160 C512 420 512 640 512 740 C512 820 482 865 430 890" stroke-width="78"/>
+    <path d="M644 190 C644 420 644 620 644 720 C644 800 614 845 562 870" stroke-width="78"/>
+  </g>
+  <g fill="none" stroke="#FBD3DE" stroke-linecap="round" stroke-width="12">
+    <path d="M395 230 C395 380 395 470 395 520"/><path d="M527 200 C527 360 527 450 527 500"/><path d="M659 230 C659 380 659 470 659 520"/>
+  </g>
+</svg>

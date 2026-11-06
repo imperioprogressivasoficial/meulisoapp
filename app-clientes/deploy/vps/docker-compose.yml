@@ -1,0 +1,17 @@
+# Meu Liso na VPS (Hostinger KVM 2, Docker + Traefik em network_mode: host).
+# A VPS compila o site direto do repositório público e o serve com nginx.
+# O Traefik cuida do domínio e do HTTPS (Let's Encrypt).
+# Para publicar uma versão nova: recriar este projeto (Hostinger: Docker Manager,
+# projeto "meuliso", Recriar), que baixa o código mais recente e compila de novo.
+services:
+  meuliso:
+    build:
+      context: https://github.com/imperioprogressivasoficial/meulisoapp.git#main:app-clientes
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.meuliso.rule=Host(`meuliso.n8nimperio.tech`)"
+      - "traefik.http.routers.meuliso.entrypoints=websecure"
+      - "traefik.http.routers.meuliso.tls.certresolver=letsencrypt"
+      - "traefik.http.services.meuliso.loadbalancer.server.port=80"

@@ -1,0 +1,51 @@
+/* ===== Ajuda (/ajuda) — DS v6 "Suave" ===== */
+
+.ajd-topo { padding: var(--e-2) var(--e-5) var(--e-5); background: linear-gradient(180deg, var(--ml-dourado-veu) 0%, var(--fundo) 100%); display: flex; flex-direction: column; align-items: center; gap: var(--e-3); }
+.ajd-topo p { max-width: 320px; margin: 0; }
+
+/* ---------- busca ---------- */
+.ajd-busca { position: relative; width: 100%; display: flex; align-items: center; }
+.ajd-busca input { width: 100%; min-height: 52px; padding: 0 44px; border: 0; border-radius: var(--r-pill); background: var(--branco); box-shadow: var(--sombra-1), inset 0 0 0 1.5px var(--borda); font-size: var(--t-base); outline: none; appearance: none; -webkit-appearance: none; transition: box-shadow var(--dur-rapida); }
+.ajd-busca input::placeholder { color: var(--texto-fraco); }
+.ajd-busca input::-webkit-search-cancel-button { display: none; }
+.ajd-busca input:focus { box-shadow: var(--sombra-1), inset 0 0 0 1.5px var(--ml-dourado), var(--anel-foco); }
+.ajd-busca__icone { position: absolute; left: 16px; color: var(--texto-fraco); pointer-events: none; }
+.ajd-busca__limpar { position: absolute; right: 8px; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--texto-suave); background: var(--areia-100); }
+
+/* âncora para rolar até as perguntas sem esconder sob o cabeçalho */
+.ajd-ancora { scroll-margin-top: 72px; height: 0; margin-bottom: calc(var(--e-4) * -1); }
+
+/* ---------- chips ---------- */
+.ajd-categorias { display: flex; gap: var(--e-2); overflow-x: auto; margin: 0 calc(var(--e-4) * -1); padding: 2px var(--e-4) var(--e-1); scrollbar-width: none; }
+.ajd-categorias::-webkit-scrollbar { display: none; }
+.ajd-chip { flex: 0 0 auto; min-height: 38px; padding: 0 var(--e-4); border-radius: var(--r-pill); background: var(--branco); box-shadow: inset 0 0 0 1.5px var(--borda); color: var(--texto); font-size: var(--t-sm); font-weight: 600; white-space: nowrap; transition: background var(--dur-rapida), box-shadow var(--dur-rapida), color var(--dur-rapida); }
+.ajd-chip.sel { background: var(--ml-dourado); color: var(--ml-sobre-dourado); box-shadow: var(--sombra-ouro); }
+.ajd-chip--branco.sel { background: var(--ml-dourado-veu); color: var(--acento-texto); box-shadow: inset 0 0 0 1.5px var(--ml-dourado-claro); }
+.ajd-contagem { margin: calc(var(--e-2) * -1) 0 0; }
+
+/* ---------- perguntas ---------- */
+.ajd-grupo { display: flex; flex-direction: column; gap: var(--e-2); }
+.ajd-grupo__titulo { margin: var(--e-1) var(--e-1) 0; font-size: var(--t-sm); font-weight: 700; letter-spacing: .02em; color: var(--texto-suave); }
+.ajd-lista { padding-top: var(--e-1); padding-bottom: var(--e-1); gap: 0; }
+.ajd-item + .ajd-item { border-top: 1px solid var(--borda); }
+.ajd-item__pergunta { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--e-3); padding: 14px 0; text-align: left; font-size: var(--t-md); font-weight: 600; line-height: 1.3; color: var(--texto); }
+.ajd-item.aberta .ajd-item__pergunta { color: var(--acento-texto); }
+.ajd-item__seta { display: inline-flex; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; align-items: center; justify-content: center; background: var(--areia-100); color: var(--texto-suave); }
+.ajd-item.aberta .ajd-item__seta { background: var(--ml-dourado-veu); color: var(--acento-texto); }
+.ajd-item__corpo { overflow: hidden; }
+.ajd-item__resposta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--e-2); padding: 0 0 var(--e-4); color: var(--texto); font-size: var(--t-md); line-height: 1.5; }
+.ajd-item__resposta p { margin: 0; }
+.ajd-item__resposta ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; color: var(--texto-suave); }
+.ajd-item__resposta li::marker { color: var(--ml-dourado-icone); }
+
+.ajd-acao-linha { display: inline-flex; align-items: center; flex-wrap: wrap; gap: var(--e-2); margin-top: var(--e-1); }
+.ajd-acao { gap: 6px; }
+.ajd-acao svg { flex-shrink: 0; }
+
+.ajd-vazio { align-items: center; text-align: center; gap: var(--e-2); padding: var(--e-6) var(--e-5); }
+.ajd-vazio .suave { max-width: 280px; }
+
+/* ---------- contato ---------- */
+.ajd-contato { gap: var(--e-3); background: linear-gradient(160deg, var(--ml-dourado-veu), var(--branco) 70%); }
+.ajd-contato__titulo { font-family: var(--fonte-marca); font-weight: 500; font-size: var(--t-xl); line-height: 1.15; }
+.ajd-rodape { margin: var(--e-2) var(--e-4) 0; }
